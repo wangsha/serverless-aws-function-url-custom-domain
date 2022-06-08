@@ -11,8 +11,6 @@ class ServerlessAWSFunctionURLCustomDomainPlugin {
   constructor(serverless, options) {
     this.serverless = serverless;
     this.options = options;
-    
-    this.serverless.cli.consoleLog(JSON.stringify(this.serverless.service.custom));
 
     this.hooks = {
       'before:package:createDeploymentArtifacts': this.createDeploymentArtifacts.bind(this),
@@ -49,14 +47,14 @@ class ServerlessAWSFunctionURLCustomDomainPlugin {
 
     const outputs = awsInfo.gatheredData.outputs;
     const apiDistributionDomain = _.find(outputs, (output) => {
-      return output.OutputKey === 'ApiDistribution';
+      return output.OutputKey === 'ApiCloudFrontDistributionDomain';
     });
 
     if (!apiDistributionDomain || !apiDistributionDomain.OutputValue) {
       return ;
     }
 
-    const cnameDomain = this.getConfig('domain', '-');
+    const cnameDomain = this.getConfig('apiDomain', '-');
 
     this.serverless.cli.consoleLog('CloudFront domain name');
     this.serverless.cli.consoleLog(`  ${apiDistributionDomain.OutputValue} (CNAME: ${cnameDomain})`);
@@ -85,8 +83,10 @@ class ServerlessAWSFunctionURLCustomDomainPlugin {
     const domain = this.getConfig('apiDomain', null);
 
     if (domain !== null) {
-      distributionConfig.Aliases = Array.isArray(domain) ? domain : [ domain ];
-      apiRecordsConfig.RecordSets[0].Name =  Array.isArray(domain) ? domain[0] : domain;
+      const domains = Array.isArray(domain) ? domain : [ domain ]
+      distributionConfig.Aliases = domains;
+      apiRecordsConfig.RecordSets[0].Name =  domains[0];
+      distributionConfig.Comment = 'Api distribution for ' + domains[0];
     } else {
       delete distributionConfig.Aliases;
     }
@@ -96,7 +96,7 @@ class ServerlessAWSFunctionURLCustomDomainPlugin {
 
 
   getConfig(field, defaultValue) {
-    return _.get(this.serverless, `service.custom.${field}`, defaultValue)
+    return _.get(this.serverless, `service.custom.urlDomain.${field}`, defaultValue)
   }
 
 }

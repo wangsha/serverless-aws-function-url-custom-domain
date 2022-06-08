@@ -1,15 +1,24 @@
 {
   "name": "serverless-aws-function-url-custom-domain",
   "version": "0.9.0",
-  "description": "Serverless plugin template",
+  "description": "Serverless AWS Lambda URL custom domain configuration via cloudfront distribution and route 53.",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/wangsha/serverless-aws-function-url-custom-domain"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "author": "wangsha",
+  "keywords": [
+    "serverless",
+    "serverless plugin",
+    "cloudfront",
+    "function url",
+    "lambda",
+    "aws",
+    "aws lambda",
+    "amazon web services",
+    "serverless.com"
+  ],
   "dependencies": {
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21"

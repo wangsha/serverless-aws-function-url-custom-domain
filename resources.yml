@@ -8,7 +8,7 @@ Resources:
         Enabled: true
         PriceClass: PriceClass_100
         HttpVersion: http2
-        Comment: Api distribution for ${self:custom.apiDomain}
+        Comment: Api distribution for ${self:custom.urlDomain.apiDomain}
         Origins:
           - Id: ApiGateway
             DomainName: { "Fn::Select": [2, {'Fn::Split': ["/", {'Fn::GetAtt': [ApiLambdaFunctionUrl, FunctionUrl]}]}]} # extract function url form your lambda resource
@@ -44,20 +44,20 @@ Resources:
             Cookies:
               Forward: none
         Aliases:
-          - ${self:custom.apiDomain}
+          - ${self:custom.urlDomain.apiDomain}
         ViewerCertificate:
           SslSupportMethod: sni-only
           MinimumProtocolVersion: TLSv1.2_2021
-          AcmCertificateArn: ${self:custom.certificateNVirginaArn}
+          AcmCertificateArn: ${self:custom.urlDomain.certificateArn}
   ApiRecordSetGroup:
     Type: AWS::Route53::RecordSetGroup
     DeletionPolicy: Delete
     DependsOn:
       - ApiCloudFrontDistribution
     Properties:
-      HostedZoneName: ${self:custom.hostedZoneName}
+      HostedZoneName: ${self:custom.urlDomain.hostedZoneName}
       RecordSets:
-        - Name: ${self:custom.apiDomain}
+        - Name: ${self:custom.urlDomain.apiDomain}
           Type: A
           AliasTarget:
             HostedZoneId: Z2FDTNDATAQYW2 # Cloudfront default hosted zone ID
@@ -66,3 +66,6 @@ Outputs:
   ApiCloudFrontDistributionDomain:
     Value:
       Fn::GetAtt: [ ApiCloudFrontDistribution, DomainName ]
+  Route53Record:
+    Value:
+      Ref: ApiRecordSetGroup
