@@ -5,7 +5,7 @@
 
 # serverless-aws-function-url-custom-domain
 
-Automatically creates AWS CloudFront distribution and Route 53 records to AWS Lambda with [Function URL]((https://aws.amazon.com/fr/blogs/aws/announcing-aws-lambda-function-urls-built-in-https-endpoints-for-single-function-microservices/) (no api gateway)
+Automatically creates AWS CloudFront distribution and Route 53 records to AWS Lambda with [Function URL](https://aws.amazon.com/fr/blogs/aws/announcing-aws-lambda-function-urls-built-in-https-endpoints-for-single-function-microservices/) (no api gateway).
 
 ## Installation 
 ```bash
