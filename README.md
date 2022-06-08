@@ -6,8 +6,8 @@
 Automatically creates AWS CloudFront distribution and Route 53 records to AWS Lambda with [Function URL]((https://aws.amazon.com/fr/blogs/aws/announcing-aws-lambda-function-urls-built-in-https-endpoints-for-single-function-microservices/) (no api gateway)
 
 ## Installation 
-```
-$ npm install --save-dev serverless-aws-function-url-custom-domain
+```bash
+npm install --save-dev serverless-aws-function-url-custom-domain
 ```
 
 ## Configuration
@@ -30,6 +30,25 @@ functions:
   api:
     handler: wsgi_handler.handler
     url: true # activate function URL!
+
+```
+
+### Deploy
+```javascript
+serverless deploy
+```
+
+### Inspect Result
+```javascript
+serverless info --verbose
+```
+
+```
+Output:
+
+
+CloudFront domain name
+  xxxxx.cloudfront.net (CNAME: ${env:SUBDOMAIN}.yourdomain.com)
 
 ```
 
