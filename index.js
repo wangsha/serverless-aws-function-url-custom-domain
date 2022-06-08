@@ -86,7 +86,7 @@ class ServerlessAWSFunctionURLCustomDomainPlugin {
 
     if (domain !== null) {
       distributionConfig.Aliases = Array.isArray(domain) ? domain : [ domain ];
-      apiRecordsConfig.RecordSets.Name =  Array.isArray(domain) ? domain[0] : domain;
+      apiRecordsConfig.RecordSets[0].Name =  Array.isArray(domain) ? domain[0] : domain;
     } else {
       delete distributionConfig.Aliases;
     }
