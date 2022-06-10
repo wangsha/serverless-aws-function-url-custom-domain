@@ -32,3 +32,7 @@ jobs:
           git-branch: npm-audit-action
           git-remote: origin
           github-token: ${{ secrets.GITHUB_TOKEN }} 
+      - name: outdated version
+        uses: ycjcl868/outdated-version-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
