@@ -21,9 +21,7 @@ jobs:
         uses: 'luisfontes19/npm-audit-action@v0.1.0'
         with:
           project-path: "."
-          json: false
           only: prod
-          level: critical
           fix: true
           package-lock-only: false
           force: true
