@@ -29,7 +29,6 @@ class ServerlessAWSFunctionURLCustomDomainPlugin {
 
     this.prepareResources(resources);
     const combinedResouces = _.merge(baseResources, resources);
-    this.serverless.cli.consoleLog(JSON.stringify(combinedResouces));
     return combinedResouces;
 
   }
