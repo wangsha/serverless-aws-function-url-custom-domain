@@ -1,6 +1,14 @@
+name: NPM audit
+
 on:
   schedule:
     - cron: '0 0 1 * *'
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
 
 jobs:
   npm-audit:
