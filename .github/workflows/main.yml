@@ -32,8 +32,9 @@ jobs:
           token: ${{ secrets.NPM_TOKEN }}
       - name: Check if version has been updated
         id: check
-        uses: EndBug/version-check@v1
-
+        uses: EndBug/version-check@v2.1.0
+        with:
+          file-url: https://unpkg.com/serverless-aws-function-url-custom-domain/package.json
       - name: Log when changed
         if: steps.check.outputs.changed == 'true'
         run: 'echo "Version change found in commit ${{ steps.check.outputs.commit }}! New version: ${{ steps.check.outputs.version }} (${{ steps.check.outputs.type }})"'
