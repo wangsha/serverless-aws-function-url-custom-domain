@@ -64,7 +64,7 @@ class ServerlessAWSFunctionURLCustomDomainPlugin {
   }
 
   prepareAcmCertificateArn(distributionConfig) {
-    const arn = this.getConfig('certificateNVirginaArn', null);
+    const arn = this.getConfig('certificateArn', null);
     distributionConfig.ViewerCertificate.AcmCertificateArn = arn;
   }
 
