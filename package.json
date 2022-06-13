@@ -1,17 +1,16 @@
 {
   "name": "serverless-aws-function-url-custom-domain",
-  "version": "0.9.13",
+  "version": "0.9.14",
   "description": "Serverless AWS Lambda URL custom domain configuration via cloudfront distribution and route 53.",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/wangsha/serverless-aws-function-url-custom-domain"
   },
-  "scripts" : {
+  "scripts": {
     "test": "npm run test-lint && npm run test-unit",
     "test-lint": "eslint *.js",
     "test-unit": "./node_modules/mocha/bin/mocha.js index.test.js"
-
   },
   "author": "wangsha",
   "keywords": [
