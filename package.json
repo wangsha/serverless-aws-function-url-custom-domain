@@ -7,6 +7,12 @@
     "type": "git",
     "url": "https://github.com/wangsha/serverless-aws-function-url-custom-domain"
   },
+  "scripts" : {
+    "test": "npm run test-lint && npm run test-unit",
+    "test-lint": "eslint *.js",
+    "test-unit": "./node_modules/mocha/bin/mocha.js index.test.js"
+
+  },
   "author": "wangsha",
   "keywords": [
     "serverless",
@@ -21,7 +27,8 @@
   ],
   "dependencies": {
     "js-yaml": "^4.1.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "mustache": "^4.2.0"
   },
   "peerDependencies": {
     "serverless": "3.x"
@@ -33,6 +40,7 @@
   "devDependencies": {
     "eslint": "^8.17.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.26.0"
+    "eslint-plugin-import": "^2.26.0",
+    "mocha": "^10.0.0"
   }
 }
