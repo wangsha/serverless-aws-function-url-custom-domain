@@ -21,6 +21,7 @@ jobs:
         with:
           node-version: 12
       - run: npm install
+      - run: npm run test-unit
       - name:  'Automated Version Bump'
         uses:  'phips28/gh-action-bump-version@master'
         env:

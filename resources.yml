@@ -1,6 +1,6 @@
 ---
 Resources:
-  ApiCloudFrontDistribution:
+  CloudFrontDistribution:
     Type: AWS::CloudFront::Distribution
     DeletionPolicy: Delete
     Properties:
@@ -8,10 +8,10 @@ Resources:
         Enabled: true
         PriceClass: PriceClass_100
         HttpVersion: http2
-        Comment: Api distribution for ${self:custom.urlDomain.apiDomain}
+        Comment: "Lambda FunctionURL {{{ domains }}}"
         Origins:
-          - Id: ApiGateway
-            DomainName: { "Fn::Select": [2, {'Fn::Split': ["/", {'Fn::GetAtt': [ApiLambdaFunctionUrl, FunctionUrl]}]}]} # extract function url form your lambda resource
+          - Id: LambdaFunctionURL
+            DomainName: { "Fn::Select": [2, {'Fn::Split': ["/", {'Fn::GetAtt': ["{{{ lambdaFunctionUrl }}}", FunctionUrl]}]}]} # extract function url form your lambda resource
             OriginPath: ''
             CustomOriginConfig:
               HTTPPort: 80
@@ -19,7 +19,7 @@ Resources:
               OriginProtocolPolicy: https-only
               OriginSSLProtocols: [TLSv1, TLSv1.1, TLSv1.2]
         DefaultCacheBehavior:
-          TargetOriginId: ApiGateway
+          TargetOriginId: LambdaFunctionURL
           ViewerProtocolPolicy: redirect-to-https
           Compress: true
           DefaultTTL: 0
@@ -36,36 +36,19 @@ Resources:
             - OPTIONS
             - GET
           ForwardedValues:
-            QueryString: false
+            QueryString: true
             Headers:
               - Accept
               - x-api-key
               - Authorization
             Cookies:
-              Forward: none
-        Aliases:
-          - ${self:custom.urlDomain.apiDomain}
+              Forward: all
+        Aliases: "{{{ domains }}}"
         ViewerCertificate:
           SslSupportMethod: sni-only
           MinimumProtocolVersion: TLSv1.2_2021
-          AcmCertificateArn: ${self:custom.urlDomain.certificateArn}
-  ApiRecordSetGroup:
-    Type: AWS::Route53::RecordSetGroup
-    DeletionPolicy: Delete
-    DependsOn:
-      - ApiCloudFrontDistribution
-    Properties:
-      HostedZoneName: ${self:custom.urlDomain.hostedZoneName}
-      RecordSets:
-        - Name: ${self:custom.urlDomain.apiDomain}
-          Type: A
-          AliasTarget:
-            HostedZoneId: Z2FDTNDATAQYW2 # Cloudfront default hosted zone ID
-            DNSName: { 'Fn::GetAtt': [ApiCloudFrontDistribution, DomainName] } # set the domain of your cloudfront distribution
+          AcmCertificateArn: "{{{certificateArn}}}"
 Outputs:
-  ApiCloudFrontDistributionDomain:
+  CloudFrontDistributionDomain:
     Value:
-      Fn::GetAtt: [ ApiCloudFrontDistribution, DomainName ]
-  Route53Record:
-    Value:
-      Ref: ApiRecordSetGroup
+      Fn::GetAtt: [ CloudFrontDistribution, DomainName ]

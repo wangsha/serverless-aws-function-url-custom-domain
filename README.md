@@ -24,10 +24,12 @@ plugins:
 
 custom:
   urlDomain:
-    apiDomain: ${env:SUBDOMAIN}.yourdomain.com  # change by your custom domain
+    domains: 
+      - ${env:SUBDOMAIN}.yourdomain.com  # custom domain 1
+      - ${env:SUBDOMAIN}-alt.yourdomain.com  # custom domain 2
     hostedZoneName: yourdomain.com.  # your domain Route 53 hosted zone name
     certificateArn: 'arn:aws:acm:us-east-1:xxxxx:certificate/xxxxx' # need to be located at NVirgina 
-    
+    route53: false # disable route 53 integration
 functions:
   api:
     handler: wsgi_handler.handler
