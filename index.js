@@ -36,7 +36,6 @@ class ServerlessAWSFunctionURLCustomDomainPlugin {
     const resources = this.prepareResources(config);
 
     const combinedResouces = _.merge(baseResources, resources);
-    console.log(JSON.stringify(combinedResouces));
 
     return combinedResouces;
   }
@@ -56,7 +55,7 @@ class ServerlessAWSFunctionURLCustomDomainPlugin {
       return;
     }
 
-    const cnameDomain = this.getConfig('apiDomain', '-');
+    const cnameDomain = this.getConfig('domains', []);
 
     this.serverless.cli.consoleLog('CloudFront domain name');
     this.serverless.cli.consoleLog(`${apiDistributionDomain.OutputValue} (CNAME: ${cnameDomain})`);
