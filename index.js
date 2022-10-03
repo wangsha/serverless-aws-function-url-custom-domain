@@ -29,7 +29,7 @@ class ServerlessAWSFunctionURLCustomDomainPlugin {
       this.serverless.cli.consoleLog("no function url defined");
       return baseResources;
     }
-    
+
     const config = this.serverless.service.custom.urlDomain;
     config['lambdaFunctionUrl'] = functionURLResourceName
 

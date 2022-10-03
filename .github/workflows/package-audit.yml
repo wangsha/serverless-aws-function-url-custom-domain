@@ -31,7 +31,7 @@ jobs:
           git-pr-title: "[SECURITY] NPM audit fix"
           git-branch: npm-audit-action
           git-remote: origin
-          github-token: ${{ secrets.GITHUB_TOKEN }} 
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: outdated version
         uses: ycjcl868/outdated-version-action@v1
         with:

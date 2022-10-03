@@ -7,7 +7,7 @@
 
 Automatically creates AWS CloudFront distribution and Route 53 records to AWS Lambda with [Function URL](https://aws.amazon.com/fr/blogs/aws/announcing-aws-lambda-function-urls-built-in-https-endpoints-for-single-function-microservices/) (no api gateway).
 
-## Installation 
+## Installation
 ```bash
 npm install --save-dev serverless-aws-function-url-custom-domain
 ```
@@ -20,15 +20,15 @@ This plugin assumes your domain is hosted and managed with AWS Route53. SSL cert
 
 plugins:
   - serverless-aws-function-url-custom-domain
-  
+
 
 custom:
   urlDomain:
-    domains: 
+    domains:
       - ${env:SUBDOMAIN}.yourdomain.com  # custom domain 1
       - ${env:SUBDOMAIN}-alt.yourdomain.com  # custom domain 2
     hostedZoneName: yourdomain.com.  # your domain Route 53 hosted zone name
-    certificateArn: 'arn:aws:acm:us-east-1:xxxxx:certificate/xxxxx' # need to be located at NVirgina 
+    certificateArn: 'arn:aws:acm:us-east-1:xxxxx:certificate/xxxxx' # need to be located at NVirgina
     route53: false # disable route 53 integration
 functions:
   api:
@@ -67,10 +67,10 @@ More specifically this plugin needs the following policies attached:
   * `cloudfront:UpdateDistribution`
   * `cloudfront:DeleteDistribution`
   * `cloudfront:TagResource`
-  * `route53:ListHostedZones`             
+  * `route53:ListHostedZones`
   * `route53:ChangeResourceRecordSets`
   * `route53:GetHostedZone`
-  * `route53:ListResourceRecordSets` 
+  * `route53:ListResourceRecordSets`
   * `acm:ListCertificates`
 
 You can read more about IAM profiles and policies in the [Serverless documentation](https://serverless.com/framework/docs/providers/aws/guide/credentials#creating-aws-access-keys).
