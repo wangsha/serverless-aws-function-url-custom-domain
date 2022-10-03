@@ -1,6 +1,6 @@
 {
   "name": "serverless-aws-function-url-custom-domain",
-  "version": "0.9.22",
+  "version": "0.9.23",
   "description": "Serverless AWS Lambda URL custom domain configuration via cloudfront distribution and route 53.",
   "main": "index.js",
   "repository": {
