@@ -2,6 +2,8 @@
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)]([https://raw.githubusercontent.com/Droplr/serverless-api-cloudfront/master/LICENSE](https://raw.githubusercontent.com/wangsha/serverless-aws-function-url-custom-domain/main/LICENSE))
 [![npm version](https://badge.fury.io/js/serverless-aws-function-url-custom-domain.svg)](https://badge.fury.io/js/serverless-aws-function-url-custom-domain)
 [![npm downloads](https://img.shields.io/npm/dt/serverless-aws-function-url-custom-domain.svg?style=flat)](https://www.npmjs.com/package/serverless-aws-function-url-custom-domain)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+
 
 # serverless-aws-function-url-custom-domain
 
